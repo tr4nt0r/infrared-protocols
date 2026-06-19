@@ -1,0 +1,62 @@
+"""Command codes for Suntech Lite SP511E Digital Tape Controller.
+
+https://suntechlite.com/sp511e-digital-tape-controller/
+"""
+
+from enum import IntEnum
+
+from ...commands import Command
+from ...commands.nec import NECCommand
+
+
+class SuntechLiteSp511eCode(IntEnum):
+    """Suntech Lite SP511E IR command codes."""
+
+    ON = 0xA35C
+    OFF = 0xBF40
+    BRIGHTNESS_UP = 0xEC13
+    BRIGHTNESS_DOWN = 0xED12
+    SPEED_UP = 0xE817
+    SPEED_DOWN = 0xE916
+    SENSITIVITY_UP = 0xF00F
+    SENSITIVITY_DOWN = 0xF10E
+    MODE_UP = 0xEA15
+    MODE_DOWN = 0xEB14
+    MODE_AUTO = 0xEF10
+    COLOR_PICKER = 0xEE11
+    DIY1 = 0xF708
+    DIY2 = 0xF609
+    DIY3 = 0xF50A
+    DIY4 = 0xF40B
+    MUSIC_UP = 0xF20D
+    MUSIC_DOWN = 0xF30C
+
+    RAINBOW = 0xB748
+    METEOR = 0xB34C
+    STARS = 0xE01F
+    FIRE = 0xE41B
+
+    RED = 0xA758
+    GREEN = 0xA659
+    BLUE = 0xBA45
+    WHITE = 0xBB44
+    TOMATO = 0xAB54
+    LIGHT_GREEN = 0xAA55
+    SKY_BLUE = 0xB649
+    ORANGE_RED = 0xAF50
+    CYAN = 0xAE51
+    REBECCA_PURPLE = 0xB24D
+    ORANGE = 0xE31C
+    TURQUOISE = 0xE21D
+    PURPLE = 0xE11E
+    YELLOW = 0xE718
+    DARK_CYAN = 0xE619
+    PLUM = 0xE51A
+
+    def to_command(self, repeat_count: int = 0) -> Command:
+        """Build a NEC command."""
+        return NECCommand(
+            address=0xFF00,
+            command=self.value,
+            repeat_count=repeat_count,
+        )
