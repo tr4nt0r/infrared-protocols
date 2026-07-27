@@ -1,12 +1,11 @@
 """Command codes for generic 44-key LED remote control."""
 
-from enum import IntEnum
-
 from ....commands import Command
 from ....commands.nec import NECCommand
+from .base import GenericLEDRemoteCode
 
 
-class Generic44KeyCode(IntEnum):
+class Generic44KeyCode(GenericLEDRemoteCode):
     """Generic 44-key LED remote control IR command codes."""
 
     ON = 0x40
